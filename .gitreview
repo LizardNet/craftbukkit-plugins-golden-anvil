@@ -1,0 +1,6 @@
+[gerrit]
+host=gerrit.fastlizard4.org
+port=1234
+project=craftbukkit-plugins/golden-anvil
+defaultbranch=master
+defaultremote=origin
