@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Golden Anvils</name>
+  <name>GoldenAnvils</name>
   <url>https://git.fastlizard4.org/gitblit/summary/?r=craftbukkit-plugins/golden-anvil.git</url>
 
     <repositories>
