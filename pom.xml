@@ -4,7 +4,7 @@
 
   <groupId>org.fastlizard4.git.craftbukkit-plugins</groupId>
   <artifactId>golden-anvil</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>GoldenAnvils</name>

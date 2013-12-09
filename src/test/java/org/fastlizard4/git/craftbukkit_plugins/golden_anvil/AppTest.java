@@ -15,10 +15,15 @@
  *
  * Gerrit Code Review for the project: <https://gerrit.fastlizard4.org/r/#/q/project:craftbukkit-plugins/golden-anvil,n,z>
  *
- * Continuous Integration for this project: <https://integration.fastlizard4.org/jenkins/job/craftbukkit-plugins-golden-anvil%20maven/>
+ * Continuous Integration for this project: <https://integration.fastlizard4.org/jenkins/job/craftbukkit-plugins-golden-anvil/>
  *
  * Alternatively, the project source code can be found on the PUBLISH-ONLY mirror on GitHub:
  * <https://github.com/LizardNet/craftbukkit-plugins-golden-anvil>
+ *
+ * To build this plugin, ensure you have Apache Maven verion 2 or 3 installed on your system, and run Maven with the "package" goal.
+ * The .jar file will appear in target/ folder.  Install the plugin by moving it to the plugins/ directory in the root of your CraftBukkit
+ * server directory.  You can also download the jarfiles from <https://integration.fastlizard4.org/jenkins/job/craftbukkit-plugins-golden-anvil/promotion/>
+ * Do NOT download builds that are not listed under at least one of "Development", "Beta", or "Stable"!
  */
 
 package org.fastlizard4.git.craftbukkit_plugins.golden_anvil;
