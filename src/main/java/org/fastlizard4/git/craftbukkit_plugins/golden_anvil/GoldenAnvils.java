@@ -45,6 +45,7 @@ public final class GoldenAnvils extends JavaPlugin {
 	public ItemStack goldenAnvil; //Material.ANVIL, damage value 3
 	public ItemStack goldenAnvilDamaged; //Material.ANVIL, damage value 4
 	public ItemStack goldenAnvilVeryDamaged; //Material.ANVIL, damage value 5
+	private boolean m_recipeLoaded = false; //Boolean variable that will indicate whether the golden anvils recipe is loaded or not
 	
     @Override
     public void onEnable() {
@@ -77,6 +78,7 @@ public final class GoldenAnvils extends JavaPlugin {
 	//Attempt to register Golden Anvil crafting recipe
         if(getServer().addRecipe(goldenAnvilRecipe)) {
         	getLogger().info("Successfully added golden anvil crafting recipe!");
+		m_recipeLoaded = true;
         } else {
         	getLogger().severe("There is no crafting recipe, only Zuul!  (Adding the crafting recipe failed for some reason; I am now cowardly refusing to continue.)");
         	getPluginLoader().disablePlugin(this);
@@ -87,25 +89,29 @@ public final class GoldenAnvils extends JavaPlugin {
     public void onDisable() {
     	getLogger().info("Attempting to unload golden anvils crafting recipe....");
     	
-	//Iterate through the server's list of registered recipes and attempt to cleanly unload the Golden Anvil crafting recipe
-	//After the plugin is unloaded, Golden Anvils will behave like standard Anvils, and Golden Anvils will be uncraftable
-        Iterator<Recipe> recipeList = getServer().recipeIterator();
-        Recipe recipe;
-        try {
-        	while(recipeList.hasNext()) {
-        		recipe = recipeList.next();
-        		
-        		if(recipe.getResult() == this.goldenAnvil) {
-        			recipeList.remove();
-        			break;
-        		}
-        	}
-        } catch(Exception e) {
-        	getLogger().severe("Unable to unload golden anvils crafting recipe!  Expect undefined behavior!");
-        	getLogger().severe("The exception that occurred was: "+e.getMessage());
-        	getLogger().severe("A stack trace will now be printed to stderr.");
-        	e.printStackTrace();
-        }
+	if(this.m_recipeLoaded) {
+		//Iterate through the server's list of registered recipes and attempt to cleanly unload the Golden Anvil crafting recipe
+		//After the plugin is unloaded, Golden Anvils will behave like standard Anvils, and Golden Anvils will be uncraftable
+		//Only attempt to do this, though, if the recipe got loaded in the first place (this.m_recipeLoaded)
+	        Iterator<Recipe> recipeList = getServer().recipeIterator();
+	        Recipe recipe;
+	        try {
+	        	while(recipeList.hasNext()) {
+	        		recipe = recipeList.next();
+	        		
+	        		if(recipe.getResult() == this.goldenAnvil) {
+	        			recipeList.remove();
+					this.m_recipeLoaded = false;
+	        			break;
+	        		}
+	        	}
+	        } catch(Exception e) {
+	        	getLogger().severe("Unable to unload golden anvils crafting recipe!  Expect undefined behavior!");
+	        	getLogger().severe("The exception that occurred was: "+e.getMessage());
+	        	getLogger().severe("A stack trace will now be printed to stderr.");
+	        	e.printStackTrace();
+	        }
+	}
         
         getLogger().info("Successfully unloaded golden anvils crafting recipe.  Bye!");
     }
